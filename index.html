@@ -54,15 +54,18 @@
             </div>
             <!-- === Simple results === -->
             <div id="lyrist" class="d-flex justify-content-center">
-                <div class="">
+                <!-- <div class=""> -->
 
-                </div>
+                <!-- </div> -->
             </div>
             <!-- Single Lyrics -->
             <div class="single-lyrics text-center">
                 <button class="btn go-back">&lsaquo;</button>
-                <h2 class="text-success mb-4">Pentatonix - Na Na Na</h2>
+                <div class="song-title text-center">
+                    <h2 id="current-title" class="text-success mb-4"> Pentatonix - Na Na Na</h2>
+                </div>
                 <pre id="current-lyrics" class="lyric text-white">
+
     Wont go whistling like the wind blows,
     Looking out my window,
     Just to see the shine
@@ -208,43 +211,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!-- Custom Script Here -->
-    <script>
-
-        let searchButton = document.getElementById("search");
-        searchButton.addEventListener('click', function () {
-            let inputText = document.getElementById("inputText");
-            fetch('https://api.lyrics.ovh/suggest/' + inputText.value)
-                .then(res => res.json())
-                .then(data => displaySongs(data))
-
-        })
-
-        function getLyrics(artistName, titleOfSong) {
-            fetch(`https://api.lyrics.ovh/v1/${artistName}/${titleOfSong}`)
-                .then(res => res.json())
-                .then(song => {
-                    const currentLyric = document.getElementById('current-lyrics');
-                    currentLyric.innerText = song.lyrics;
-
-                })
-
-
-
-        }
-
-        function displaySongs(data) {
-            const parent = document.getElementById('lyrist');
-            parent.innerHTML = "";
-            for (let i = 0; i < 10; i++) {
-                const element = data.data[i];
-
-
-                parent.innerHTML += `<class="author lead" ><strong>${element.title}</strong> Album by <span>${element.artist.name}</span> <button class="btn btn-success" id ="lastBtn" onclick="getLyrics('${element.artist.name}','${element.title}')"> Get Lyrics</button> </p>`
-            }
-        }
-
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
-
